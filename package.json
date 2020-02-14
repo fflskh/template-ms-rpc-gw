@@ -1,0 +1,78 @@
+{
+  "name": "template-ms-rpc-gw",
+  "version": "1.0.0",
+  "description": "带RPC的微服务网关模板",
+  "main": "bin/www",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/www",
+    "dev": "NODE_ENV=development ./node_modules/.bin/nodemon --delay 2500ms bin/www",
+    "doc": "node ./apidoc.js",
+    "format": "prettier --write \"./{bin,config,controllers,lib,middleware,pm2Configs,migrations,models,routes,seeders,task,test,services,constants}/**/*.{js,json,md}\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "keywords": [
+    "node",
+    "ms",
+    "sofa",
+    "gateway",
+    "rpc"
+  ],
+  "prettier": {
+    "printWidth": 120
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://e.coding.net/zyh/template-ms-rpc-gw.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "config": "^3.2.2",
+    "fnv-plus": "^1.2.12",
+    "ioredis": "^4.14.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-json": "^2.0.2",
+    "koa-router": "^7.4.0",
+    "koa-static-cache": "^5.1.2",
+    "koa-validate": "^1.0.7",
+    "lodash": "^4.17.15",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.24.0",
+    "mysql2": "^1.6.5",
+    "nanoid": "^2.0.3",
+    "node-schedule": "^1.3.2",
+    "redlock": "^4.0.0",
+    "sequelize": "^5.13.1",
+    "sequelize-cli": "^5.5.1",
+    "sofa-rpc-node": "^1.16.0",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.4.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "apidoc": "^0.17.7",
+    "axios": "^0.19.0",
+    "husky": "^3.0.3",
+    "lint-staged": "^9.2.1",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2",
+    "yargs": "^13.3.0"
+  }
+}

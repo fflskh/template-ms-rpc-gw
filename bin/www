@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+/**
+ * 入口文件
+ */
+const http = require("http");
+const app = require("../app");
+const Util = require("../libs/util");
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+function onError(error) {
+  if (error.syscall !== "listen") {
+    throw error;
+  }
+  switch (error.code) {
+    case "EACCES":
+      console.error(port + " requires elevated privileges");
+      process.exit(1);
+      break;
+    case "EADDRINUSE":
+      console.error(port + " is already in use");
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+function onListening() {
+  const addr = server.address();
+  const bind = typeof addr === "string"
+    ? "pipe " + addr
+    : "port " + addr.port;
+  console.log("Listening on " + bind);
+  console.log(process.env.NODE_ENV || "development");
+}
+
+//创建并监听server
+const server = http.createServer(app.callback());
+const port = Util.normalizePort(process.env.PORT || 3000);
+
+server
+  .listen(port)
+  .on("error", onError)
+  .on("listening", onListening);
