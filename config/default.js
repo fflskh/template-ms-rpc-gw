@@ -20,6 +20,11 @@ module.exports = {
     port: "6379",
     db: 10
   },
+  consul: {
+    host: "127.0.0.1",
+    port: 8500,
+    promisify: true
+  },
   timerRules: {
     test: {
       enable: true,
@@ -31,6 +36,5 @@ module.exports = {
   appName: "xxxx",
   slowSqlMillis: 1000,
   //运营日时间
-  operationalDay: "03:00",
-  zkAddress: "127.0.0.1:2181"
+  operationalDay: "03:00"
 };

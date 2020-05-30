@@ -4,7 +4,7 @@
 const baseLog = require("../log");
 
 module.exports = async (ctx, next) => {
-  let requestId = ctx.get("x-request-id");
+  let requestId = ctx.get("requestid");
 
   const [bizLogger, dbLogger] = [baseLog.getReqIdLogger(requestId, "biz"), baseLog.getReqIdLogger(requestId, "db")];
   ctx.log = {

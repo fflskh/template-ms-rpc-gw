@@ -1,0 +1,52 @@
+syntax = "proto3";
+//RPC服务名称
+package user;
+
+// RPC服务定义，service Services为固定写法
+service Services {
+  // RPC方法
+  rpc addUser(addUserReq) returns (addUserRes) {}
+}
+
+message CtxUser {
+  string userId = 1;
+}
+message Body {}
+message Query {}
+message Params {}
+message Header {
+  string requestId = 1;
+}
+
+//TODO 合并
+//proto通过sub module统一
+//proto区分server和client
+//自动加载controller下面方法
+//添加用户
+message addUserReq {
+  message Body {
+    string openUserId = 1; //用户ID
+    string certType = 2;  //证件类型
+    string certImage = 3; //证件图片
+    string certNo = 4; //证件号
+    string certName = 5; //证件姓名
+    string faceImage = 6; //人脸图片
+    string imageId = 7; //图片ID
+  }
+  
+  Body body = 1;  //HTTP body
+  Query query = 2; //HTTP query
+  Params params = 3;  //HTTP url params
+  Header header = 4;  //HTTP header
+  CtxUser user = 5;  //用户信息
+}
+
+message addUserRes {
+  message Data {
+    string openUserId = 1;  //用户ID
+  }
+
+  int32 code = 1;  //响应码
+  string msg = 2;  //响应消息
+  Data data = 3;  //返回数据
+}
