@@ -7,10 +7,10 @@ const uuid = require("uuid/v4");
 
 module.exports = async (ctx, next) => {
   //添加request id
-  if (!ctx.get("x-request-id")) {
+  if (!ctx.get("requestid")) {
     ctx.request.header = {
       ...ctx.header,
-      "x-request-id": uuid()
+      requestid: uuid()
     };
   }
 
